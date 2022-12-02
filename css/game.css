@@ -29,7 +29,6 @@
 }
 
 .front {
-    background-image: url('../images/beth.png');
     transform: rotateY(180deg);
 }
 
@@ -37,7 +36,6 @@
     background-image: url('../images/back.png');
     backface-visibility: hidden;
 }
-
-.card:hover {
+.reveal-card {
     transform: rotateY(180deg);
 }
