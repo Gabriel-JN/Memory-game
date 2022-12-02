@@ -1,4 +1,5 @@
-const grid = document.querySelector('.grid');
+const grid
+ = document.querySelector('.grid');
 
 const characters = [
     'beth',
@@ -19,9 +20,50 @@ const createElement = (tag, className) => {
     return element;
 }
 
+let firstCard = '';
+let secondCard = '';
+
+const checkCards = () => {
+    const firstCharacter = firstCard.getAttribute('data-character');
+    const secondCharacter = secondCard.getAttribute('data-character');
+
+    if (firstCharacter == secondCharacter) {
+        firstCard.classList.add('disabled-card');
+        secondCard.classList.add('disabled-card');
+    }
+    else { 
+
+        setTimeout( () => {
+
+            firstCard.classList.remove('reveal-card');
+            secondCard.classList.remove('reveal-card');
+
+            firstCard = '';
+            secondCard = '';
+
+        }, 500);
+        
+    }
+}
+
+
 const revealCard = ({ target }) => {
+
     if (target.parentNode.className.includes('reveal-card')) {
         return;
+    }
+
+    if (firstCard == '') {
+        target.parentNode.classList.add('reveal-card');
+        firstCard = target.parentNode;
+        
+    }
+    else if (secondCard == '') {
+        target.parentNode.classList.add('reveal-card');
+        secondCard = target.parentNode;
+       
+
+        checkCards();
     }
     target.parentNode.classList.add('reveal-card');
 }
@@ -39,6 +81,7 @@ const createCard = (character) => {
     /* grid.appendChild(card); */
 
     card.addEventListener('click', revealCard);
+    card.setAttribute('data-character', character);
 
     return card;
 }
@@ -59,4 +102,4 @@ const loadGame = () => {
     });
 }
 
-loadGame();
+    loadGame();
