@@ -1,5 +1,8 @@
 const grid
  = document.querySelector('.grid');
+ const spanPlayer = document.querySelector('.player');
+ const timer = document.querySelector('.timer');
+
 
 const characters = [
     'beth',
@@ -28,7 +31,9 @@ const checkEndGame = () => {
 
     if (disabledCards.length == 20) {
         setTimeout(() => {
-            alert('Congratulations ! YOU ARE AMAZING ');
+            clearInterval(this.loop);
+            alert(`Congratulations, ${spanPlayer.innerHTML} 
+            Your time was: ${timer.innerHTML} ! YOU ARE AMAZING` );
         }, 600);
         
     }
@@ -118,5 +123,29 @@ const loadGame = () => {
 
     });
 }
+const startTimer = () => {
+
+    this.loop = setInterval(() => {
+
+        const currentTime = Number(timer.innerHTML);
+        timer.innerHTML = currentTime + 1;
+
+    }, 1000);
+}
+
+window.onload = () => {
+
+    spanPlayer.innerHTML = localStorage.getItem('player');
+
+    startTimer();
+
+    /* or
+
+    spanPlayer.innerHTML = localStorage.getItem('player');
+    
+    */
 
     loadGame();
+}
+
+    
