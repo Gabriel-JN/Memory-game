@@ -95,7 +95,7 @@ const createCard = (character) => {
 
     card.appendChild(front);
     card.appendChild(back);
-    /* grid.appendChild(card); */
+
 
     card.addEventListener('click', revealCard);
     card.setAttribute('data-character', character);
